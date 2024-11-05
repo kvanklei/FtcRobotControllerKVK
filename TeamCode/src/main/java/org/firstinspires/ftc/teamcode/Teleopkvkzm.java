@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp
-public class git Teleopkvkzm extends LinearOpMode {
+public class Teleopkvkzm extends LinearOpMode {
 
     @Override
     public void runOpMode() {
