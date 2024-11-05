@@ -20,7 +20,9 @@ public class Teleopkvkzm extends LinearOpMode {
      //    br.setDirection(DcMotorSimple.Direction.REVERSE);
         // positions for arm
         int p1 = 0;
-        int p2 = - 700;
+        int p2 = -700;
+        int p3 = -1400;
+        int p4 = -2100;
 
         //resetting encoder back to 0
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -36,12 +38,29 @@ public class Teleopkvkzm extends LinearOpMode {
             bl.setPower(y + x);
             br.setPower(y - x);
 
+            // putting arm into different positions according to pressed button
             if (gamepad1.a) {
                 arm.setTargetPosition(p1);
+                arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                arm.setPower(1);
             } else if (gamepad1.b) {
                 arm.setTargetPosition(p2);
+                arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                arm.setPower(1);
+            } else if (gamepad1.x) {
+                arm.setTargetPosition(p3);
+                arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                arm.setPower(1);
+            } else if (gamepad1.y) {
+                arm.setTargetPosition(p4);
+                arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                arm.setPower(1);
+            }else {
+                arm.setPower(0);
             }
 
         }
     }
+
+
 }
