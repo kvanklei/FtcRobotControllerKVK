@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 public class Teleopkvkzm extends LinearOpMode {
@@ -16,11 +17,13 @@ public class Teleopkvkzm extends LinearOpMode {
         DcMotor arm = hardwareMap.get(DcMotor.class, "arm");
         DcMotor pivot_1 = hardwareMap.get(DcMotor.class,"pivot1");
         DcMotor pivot_2 = hardwareMap.get(DcMotor.class,"pivot2");
+        Servo claw = hardwareMap.get(Servo.class,"claw");
 
 
       //bl.setDirection(DcMotorSimple.Direction.REVERSE);
-     //br.setDirection(DcMotorSimple.Direction.REVERSE);
-        // positions for arm
+      //br.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        // positions for arm & pivot
         int p1 = 0;
         int p2 = -700;
         int p3 = -1400;
@@ -28,13 +31,28 @@ public class Teleopkvkzm extends LinearOpMode {
         int pivotp1 = 0;
         int pivotp2 = -60;
         int pivotp3 = -120;
+        double close = 0;
+        double open = 1;
 
 
+       // pivot_1.setDirection(DcMotorSimple.Direction.REVERSE);
+      //  pivot_2.setDirection(DcMotor.Direction.REVERSE);
+        //grab.setDirection(Servo.Direction.REVERSE);
 
 
-        //resetting encoder back to 0
+        //resetting encoders back to 0
+
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.setTargetPosition(p1);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        pivot_1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        pivot_1.setTargetPosition(pivotp1);
+        pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        pivot_2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        pivot_2.setTargetPosition(pivotp1);
+        pivot_2.setMode(DcMotor.RunMode.RUN_TO_POSITION;
 
 
         waitForStart();
@@ -67,7 +85,7 @@ public class Teleopkvkzm extends LinearOpMode {
                 arm.setPower(0);
             }
 
-            //arm pivot
+            //arm pivot positions according to pressed buttons
             if (gamepad1.dpad_down) {
                 pivot_1.setTargetPosition(pivotp1);
                 pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -95,10 +113,16 @@ public class Teleopkvkzm extends LinearOpMode {
                 pivot_1.setPower(0);
                 pivot_2.setPower(0);
             }
-        }
+            // servos
+            if (gamepad2.x) {
+                claw.setPosition(close);
+            }    else if (gamepad2.b) {
+                claw.setPosition(open);
+            }
 
+            }
+        }
     }
 
 
 
-}
