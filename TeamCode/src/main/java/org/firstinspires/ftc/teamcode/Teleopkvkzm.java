@@ -52,7 +52,7 @@ public class Teleopkvkzm extends LinearOpMode {
 
         pivot_2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         pivot_2.setTargetPosition(pivotp1);
-        pivot_2.setMode(DcMotor.RunMode.RUN_TO_POSITION;
+        pivot_2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
         waitForStart();
