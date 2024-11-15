@@ -86,6 +86,7 @@ public class Teleopkvkzm extends LinearOpMode {
             }
 
             //arm pivot positions according to pressed buttons
+
             if (gamepad1.dpad_down) {
                 pivot_1.setTargetPosition(pivotp1);
                 pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -93,6 +94,7 @@ public class Teleopkvkzm extends LinearOpMode {
                 pivot_2.setTargetPosition(pivotp1);
                 pivot_2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 pivot_2.setPower(1);
+
             } else if (gamepad1.dpad_right) {
                 pivot_1.setTargetPosition(pivotp2);
                 pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -117,11 +119,14 @@ public class Teleopkvkzm extends LinearOpMode {
             if (gamepad2.x) {
                 claw.setPosition(close);
             }    else if (gamepad2.b) {
-                claw.setPosition(open);
+                    claw.setPosition(open);
             }
 
+            telemetry.addData("Arm Position", arm.getCurrentPosition());
+            telemetry.update();
             }
         }
+
     }
 
 
